@@ -7,9 +7,9 @@
 #
 
 
-class TemplateTestCase:
+class AppTestCase:
     """Base test case for this package. Concrete test cases extend it.
 
-    Mirrors PHP's ``tests/Tests/Abstract/TemplateTestCase``. Replace this with
+    Mirrors PHP's ``tests/Tests/Abstract/AppTestCase``. Replace this with
     the shared Valkyrja pytest base once that package is available.
     """

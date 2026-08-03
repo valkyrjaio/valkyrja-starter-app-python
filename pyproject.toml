@@ -1,12 +1,12 @@
 [project]
-name = "valkyrja-template"
+name = "valkyrja-application"
 version = "26.0.2"
-description = "A Python package template for the Valkyrja Framework"
+description = "Starter application template for building on the Valkyrja Python framework"
 readme = "README.md"
 license = "MIT"
 license-files = ["LICENSE.md"]
 authors = [{ name = "Melech Mizrachi", email = "melechmizrachi@gmail.com" }]
-keywords = ["template", "valkyrja"]
+keywords = ["application", "starter", "valkyrja"]
 requires-python = ">=3.14"
 # Runtime dependencies belong here once the package needs them, e.g. the
 # framework: dependencies = ["valkyrja>=26"].
@@ -14,17 +14,16 @@ dependencies = []
 
 [project.urls]
 Homepage = "https://valkyrja.io"
-Source = "https://github.com/valkyrjaio/project-template-python"
+Source = "https://github.com/valkyrjaio/valkyrja-starter-app-python"
 
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
-# PEP 420 implicit namespace package: `src/valkyrja/` has no __init__.py, so every
-# Valkyrja repo contributes into the shared `valkyrja` namespace. hatchling maps
-# `src/valkyrja` -> `valkyrja` in the built wheel.
+# The application owns the `app` package. It does not contribute into the shared
+# `valkyrja` namespace, so `src/app/` is a regular package.
 [tool.hatch.build.targets.wheel]
-packages = ["src/valkyrja"]
+packages = ["src/app"]
 
 # The task facade. Each CI tool is isolated under .github/ci/<tool>/ with its own
 # pyproject.toml + uv.lock; every task runs that tool from its isolated
@@ -46,7 +45,7 @@ ruff-fix = "uv run -q --project .github/ci/ruff ruff check --fix --config .githu
 mypy = "uv run -q --project .github/ci/mypy mypy --config-file .github/ci/mypy/pyproject.toml src tests"
 bandit = "uv run -q --project .github/ci/bandit bandit -c .github/ci/bandit/pyproject.toml -r src"
 pytest = "uv run -q --project .github/ci/pytest pytest -c .github/ci/pytest/pyproject.toml tests"
-pytest-coverage = "uv run -q --project .github/ci/pytest pytest -c .github/ci/pytest/pyproject.toml --cov=valkyrja.template --cov-branch --cov-report=term-missing --cov-fail-under=100 tests"
+pytest-coverage = "uv run -q --project .github/ci/pytest pytest -c .github/ci/pytest/pyproject.toml --cov=app --cov-branch --cov-report=term-missing --cov-fail-under=100 tests"
 
 [tool.poe.tasks.import-linter]
 cmd = "uv run -q --project .github/ci/importlinter lint-imports --config .github/ci/importlinter/pyproject.toml"

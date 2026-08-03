@@ -2,117 +2,140 @@
     <img src="https://raw.githubusercontent.com/valkyrjaio/art/refs/heads/master/long-banner/orange/python.png" width="100%">
 </a></p>
 
-# Project Template (Python)
+# Valkyrja Starter (App)
 
-A starter template for creating new Python repositories in the Valkyrjaio
-organization.
+Starter template for building Python applications on the [Valkyrja][Valkyrja url]
+framework.
 
-This template ships with the full Valkyrja CI pipeline pre-wired (Ruff, mypy,
-Bandit, import-linter, pytest), a minimal [uv][uv url] setup, and the
-repository conventions used across the rest of the org. Use it as the starting
-point for any new Python package, CI tool config, or integration repo — not for
-end-user applications built on the Valkyrja framework (use
-[`valkyrja-starter-app-python`][starter url] for that).
+This repository gives you a working Valkyrja application as a starting point:
+HTTP and CLI entry points pre-wired, example controllers and commands,
+configuration scaffolding, and a ready-to-customize `app` package. The starter
+passes the same linting, static analysis, and architectural rules as the
+Valkyrja framework itself, so you can build your application rather than clean
+up the foundation.
 
 <p>
-    <a href="https://pypi.org/project/valkyrja-template/"><img src="https://img.shields.io/pypi/v/valkyrja-template.svg" alt="Latest Version on PyPI"></a>
-    <a href="https://pypi.org/project/valkyrja-template/"><img src="https://img.shields.io/pypi/pyversions/valkyrja-template.svg" alt="Supported Python Version"></a>
-    <a href="https://github.com/valkyrjaio/project-template-python/blob/26.x/LICENSE.md"><img src="https://img.shields.io/github/license/valkyrjaio/project-template-python.svg" alt="License"></a>
-    <a href="https://github.com/valkyrjaio/project-template-python/actions/workflows/ci.yml?query=branch%3A26.x"><img src="https://github.com/valkyrjaio/project-template-python/actions/workflows/ci.yml/badge.svg?branch=26.x" alt="CI Status"></a>
+    <a href="https://github.com/valkyrjaio/valkyrja-starter-app-python/blob/26.x/LICENSE.md"><img src="https://img.shields.io/github/license/valkyrjaio/valkyrja-starter-app-python.svg" alt="License"></a>
+    <a href="https://github.com/valkyrjaio/valkyrja-starter-app-python/actions/workflows/ci.yml?query=branch%3A26.x"><img src="https://github.com/valkyrjaio/valkyrja-starter-app-python/actions/workflows/ci.yml/badge.svg?branch=26.x" alt="CI Status"></a>
 </p>
 
-## Usage
+Status
+------
+
+Warning: the Python port is in progress. This repository holds the application
+scaffold, the CI pipeline, and the release process. The framework it builds on
+does not exist yet, so the application does not run yet.
+
+PHP is the reference implementation, and every other port mirrors its structure,
+its naming, and its tests. Read [`PORTS.md`][ports url] for the state of each
+language.
+
+What's in the Box
+-----------------
+
+The list below is what the port delivers. Each item exists in the PHP reference
+implementation today.
+
+- **Pre-wired HTTP and CLI entry points** — the application boots and answers
+  both a web request and a command-line invocation
+- **Example controllers and commands** — working code that shows routing,
+  request handling, and command dispatch
+- **Configuration scaffolding** — a config layer with example files and
+  environment-driven overrides
+- **Testing setup** — pytest configured with example tests, in the structure
+  that Valkyrja's own components use
+- **Full CI pipeline** — Ruff, mypy, Bandit, import-linter, and pytest, all
+  configured and passing on a clean clone
+- **ASGI worker integrations** — Uvicorn, Hypercorn, or Granian for a
+  persistent-worker deployment
+
+Installation
+------------
 
 ### Use this template _(recommended)_
 
-This repository is a GitHub template. Click the **Use this template** button
-at the top of the repo to create a new repository in the Valkyrjaio
-organization, pre-populated with the template's structure and CI.
+This repository is a GitHub template. Use the **Use this template** button at
+the top of the repository page to create your own application repository from
+it.
 
-### After Creating Your Repo
+### Clone manually
 
-1. Update `pyproject.toml` with your package's name, description, and metadata
-2. Rename `src/valkyrja/template/` to your component's package and replace its
-   contents with your source code
-3. Update this `README.md` to describe the new package
-4. Configure the required secrets and variables — see
-   [`REPOSITORY_NAMING.md`][repository naming url] for naming guidance and
-   `.github`'s workflow documentation for secret requirements
-5. Verify CI passes on the first commit
-
-## What's Included
-
-- **Full CI pipeline** — the same Ruff, mypy, Bandit, import-linter, and pytest
-  configuration used across every Valkyrjaio Python repo, each isolated under
-  `.github/ci/<tool>/` with its own `pyproject.toml` + `uv.lock`
-- **uv configuration** — a root `pyproject.toml` whose `[tool.poe.tasks]` expose
-  a shortcut for each CI tool, matching the org convention
-- **Repository conventions** — aligned with
-  [`REPOSITORY_NAMING.md`][repository naming url] and
-  [`VOCABULARY.md`][vocabulary url]
-
-## Running the CI Tools
-
-Every tool is isolated under `.github/ci/<tool>/` with its own `pyproject.toml`
-and `uv.lock`. Drive them through the root [poe][poe url] tasks — each runs the
-tool from its isolated environment (`uv run --project …`) against the repo root:
-
-```sh
-uv run poe ci                # run the full CI gate
-uv run poe ruff-format       # auto-format
-uv run poe ruff              # lint
-uv run poe mypy              # type-check
-uv run poe import-linter     # architecture / import boundaries
-uv run poe bandit            # security
-uv run poe pytest-coverage   # tests + 100% coverage
+```bash
+git clone https://github.com/valkyrjaio/valkyrja-starter-app-python.git your-app
+cd your-app
+rm -rf .git && git init
 ```
 
-## Versioning and Release Process
+**Python 3.14 or later is required.**
 
-This template follows [semantic versioning][semantic versioning url] with a
-major release every year, and support for each major version for 2 years
-from the date of release.
+Warning: this repository publishes no package. It is a template that you copy,
+rather than a dependency that you add. `uv add` does not install it.
 
-For more information see our
-[Versioning and Release Process documentation][Versioning and Release Process url].
+Getting Started
+---------------
 
-### Supported Versions
+### Project Structure
 
-Bug fixes are provided until 3 months after the next major release. Security
-fixes are provided for 2 years after the initial release.
+```
+src/app/            your application code
+tests/              your tests, mirroring src/
+.github/ci/         each CI tool, isolated with its own lockfile
+```
 
-| Version | Python | Release        | Bug Fixes Until | Security Fixes Until |
-| :------ | :----- | :------------- | :-------------- | :------------------- |
-| 26      | 3.14+  | March 31, 2026 | Q2 2027         | Q1 2028              |
+### Running the CI Gate
 
-## Contributing
+```bash
+uv run poe ci
+```
 
-This template is an open-source, community-driven project. Improvements to
-the template itself — refinements to the included CI configuration, uv
-setup, or documentation — are welcome.
+The gate runs the copyright header check, Ruff, mypy, import-linter, Bandit, and
+pytest at 100% coverage. It runs the same checks that the pull request runs, so a
+clean local run means a clean pull request.
+
+### Writing the Header Into a New File
+
+```bash
+uv run poe copyright-header
+```
+
+Ruff reports a file whose header does not match, and it corrects nothing. This
+command corrects it. Set your own package name in
+`.github/ci/copyright-header/config` first.
+
+Documentation
+-------------
+
+For framework-level questions about Valkyrja itself, see the
+[Valkyrja framework repository][framework url].
+
+For the build tool that generates the cache, see [Sindri][sindri url].
+
+Contributing
+------------
+
+This starter is an open-source, community-driven project. Thank you for your
+interest in helping develop, maintain, and release it.
 
 See [`CONTRIBUTING.md`][contributing url] for the submission process and
-[`VOCABULARY.md`][vocabulary url] for the terminology used across Valkyrja.
+[`VOCABULARY.md`][vocabulary url] for the terminology that Valkyrja uses.
 
-## Security Issues
+Security Issues
+---------------
 
-If you discover a security vulnerability, please follow our
+If you discover a security vulnerability, please follow the
 [disclosure procedure][security vulnerabilities url].
 
-## License
+License
+-------
 
-This template is open-source software licensed under the
+This starter is open-source software licensed under the
 [MIT license][MIT license url]. See [`LICENSE.md`](./LICENSE.md).
 
 [Valkyrja url]: https://valkyrja.io
-[uv url]: https://docs.astral.sh/uv/
-[poe url]: https://poethepoet.natn.io/
-[starter url]: https://github.com/valkyrjaio/valkyrja-starter-app-python
-[repository naming url]: https://github.com/valkyrjaio/.github/blob/26.x/REPOSITORY_NAMING.md
-[vocabulary url]: https://github.com/valkyrjaio/.github/blob/26.x/VOCABULARY.md
-[contributing url]: https://github.com/valkyrjaio/.github/blob/26.x/CONTRIBUTING.md
-[security vulnerabilities url]: https://github.com/valkyrjaio/.github/blob/26.x/SECURITY.md
-[Versioning and Release Process url]: https://github.com/valkyrjaio/.github/blob/26.x/VERSIONING_AND_RELEASE_PROCESS.md
-[semantic versioning url]: https://semver.org/
+[framework url]: https://github.com/valkyrjaio/valkyrja-python
+[sindri url]: https://github.com/valkyrjaio/sindri-python
+[ports url]: https://github.com/valkyrjaio/architecture/blob/26.x/PORTS.md
+[contributing url]: https://github.com/valkyrjaio/.github/blob/master/CONTRIBUTING.md
+[vocabulary url]: https://github.com/valkyrjaio/.github/blob/master/VOCABULARY.md
+[security vulnerabilities url]: https://github.com/valkyrjaio/.github/blob/master/SECURITY.md
 [MIT license url]: https://opensource.org/licenses/MIT
-[license url]: ./LICENSE.md

@@ -135,7 +135,7 @@ This starter is open-source software licensed under the
 [framework url]: https://github.com/valkyrjaio/valkyrja-python
 [sindri url]: https://github.com/valkyrjaio/sindri-python
 [ports url]: https://github.com/valkyrjaio/architecture/blob/26.x/PORTS.md
-[contributing url]: https://github.com/valkyrjaio/.github/blob/master/CONTRIBUTING.md
-[vocabulary url]: https://github.com/valkyrjaio/.github/blob/master/VOCABULARY.md
-[security vulnerabilities url]: https://github.com/valkyrjaio/.github/blob/master/SECURITY.md
+[contributing url]: https://github.com/valkyrjaio/.github/blob/26.x/CONTRIBUTING.md
+[vocabulary url]: https://github.com/valkyrjaio/.github/blob/26.x/VOCABULARY.md
+[security vulnerabilities url]: https://github.com/valkyrjaio/.github/blob/26.x/SECURITY.md
 [MIT license url]: https://opensource.org/licenses/MIT

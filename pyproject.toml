@@ -1,6 +1,6 @@
 [project]
 name = "valkyrja-application"
-version = "26.0.4"
+version = "26.0.5"
 description = "Starter application template for building on the Valkyrja Python framework"
 readme = "README.md"
 license = "MIT"

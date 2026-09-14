@@ -12,5 +12,5 @@ from typing import Final
 class AppInfo:
     """Package version metadata, updated by the release workflow."""
 
-    VERSION: Final[str] = "26.0.10"
-    VERSION_BUILD_DATE_TIME: Final[str] = "September 11 2026 10:28:34 MST"
+    VERSION: Final[str] = "26.0.11"
+    VERSION_BUILD_DATE_TIME: Final[str] = "September 14 2026 11:59:45 MST"

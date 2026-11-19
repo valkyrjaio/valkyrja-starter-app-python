@@ -9,14 +9,14 @@ dependencies = ["import-linter>=2.15,<3"]
 package = false
 
 # import-linter enforces module boundaries. The root poe task sets PYTHONPATH=src
-# so `app` is importable. Add layered/independence contracts here as
-# the package grows — the analog of PHP's phparkitect Rules.
+# so `app` is importable.
 [tool.importlinter]
 root_packages = ["app"]
+include_external_packages = true
 
-# Example contract to copy once there are layers to enforce:
-# [[tool.importlinter.contracts]]
-# name = "Contracts must not import implementations"
-# type = "forbidden"
-# source_modules = ["app.contract"]
-# forbidden_modules = ["app.provider"]
+# Sindri is a build tool and never a runtime dependency of the application.
+[[tool.importlinter.contracts]]
+name = "The application does not import sindri"
+type = "forbidden"
+source_modules = ["app"]
+forbidden_modules = ["sindri"]
